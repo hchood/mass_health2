@@ -26,7 +26,7 @@ end
 def make_valid_float(value)
   new_value = convert_NA_to_nil(value)
   unless new_value.nil?
-    new_value.gsub(/\D/, '').to_f
+    new_value.to_f
   else
     nil
   end
