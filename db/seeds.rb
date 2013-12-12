@@ -51,7 +51,8 @@ CSV.foreach(filename, headers: true) do |row|
       perc_pub_financed_prenatal_care_2005_08: make_valid_float(row['% publicly financed prenatal care, 2005-2008']),
       perc_teen_births_2005_08: make_valid_float(row['% teen births, 2005-2008'])
     }
-    unless TownHealthRecord.where(town_hash).count > 0
+
+    unless TownHealthRecord.exists?(geography: town_hash[:geography])
       town_record = TownHealthRecord.new(town_hash)
       if town_record.valid?
         town_record.save
